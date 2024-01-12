@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -40,7 +41,17 @@ export class UsersController {
   }
 
   @Patch(':id')
+  @HttpCode(HttpStatus.CREATED)
   async updateUser(@Body() updateNewUser: any, @Param('id') id: string) {
     return { id, updateNewUser };
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  async findOne(@Param('id') id: string) {
+    return {
+      id,
+      text: 'usuario eliminado',
+    };
   }
 }
