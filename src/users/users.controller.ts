@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import {
   Body,
   Controller,
@@ -12,13 +13,12 @@ import {
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll() {
-    return [
-      { id: 1, name: 'eder' },
-      { id: 2, name: 'pepe' },
-    ];
+  findAll() {
+    return this.usersService.findAll();
   }
 
   @Get('ab*cd')
