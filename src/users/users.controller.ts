@@ -21,10 +21,10 @@ export class UsersController {
     ];
   }
 
-  // @Get('ab*cd')
-  // async findAll() {
-  //   return 'This route uses a wildcard';
-  // }
+  @Get('ab*cd')
+  async wildCarFunction() {
+    return 'This route uses a wildcard';
+  }
 
   @Get(':id')
   @HttpCode(HttpStatus.FOUND)
@@ -48,9 +48,9 @@ export class UsersController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async findOne(@Param('id') id: string) {
+  async deleteById(@Param() params: any) {
     return {
-      id,
+      params,
       text: 'usuario eliminado',
     };
   }
